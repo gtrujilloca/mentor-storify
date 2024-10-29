@@ -1,5 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './ui/pages/home/home.component';
+import { authRoutes } from './ui/pages/auth/auth.routing';
+import { authGuard } from './core/guards/auth.guard';
+import { matchtestGuard } from './core/guards/matchtest.guard';
 
 export const routes: Routes = [
     {
@@ -8,7 +11,10 @@ export const routes: Routes = [
     },
     {
         path: 'dashboard',
-        loadComponent: () => import('@/ui/pages/dashboard/dashboard.component')
+        loadComponent: () => import('@/ui/pages/dashboard/dashboard.component'),
+        canActivate: [
+            authGuard
+        ],
     },
     {
         path: 'checkout',
@@ -16,7 +22,8 @@ export const routes: Routes = [
     },
     {
         path: 'auth',
-        loadComponent: () => import('@/ui/pages/auth/auth.component')
+        loadComponent: () => import('@/ui/pages/auth/auth.component'),
+        children: authRoutes
     },
     {
         path: 'product/:name',

@@ -1,1 +1,32 @@
-<p>login works!</p>,
+<section class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div class="w-full max-w-md px-4 py-16 sm:px-6 lg:px-8">
+        <div class="rounded-lg bg-white p-8 shadow-lg">
+            <h1 class="text-lg text-center font-bold sm:text-3xl mb-4">Welcome to FakeStore</h1>
+            <form class="space-y-4" #event="ngForm" (submit)="signin(event)">
+                <div>
+                    <label class="sr-only" for="email">Username</label>
+                    <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Username" type="text"
+                        id="username" ngModel #username="ngModel" name="username" />
+                </div>
+
+                <div>
+                    <label class="sr-only" for="password">Password</label>
+                    <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Password" type="password"
+                        id="password" ngModel #password="ngModel" name="password" />
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit"
+                        class="block w-full rounded-lg bg-black px-5 py-3 text-sm font-medium text-white">
+                        Sign in
+                    </button>
+
+                    <p class="text-center mt-2 text-sm text-gray-500">
+                        No account?
+                        <a class="underline" href="signup">Sign up</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
