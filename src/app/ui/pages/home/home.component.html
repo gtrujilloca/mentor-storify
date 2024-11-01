@@ -1,3 +1,9 @@
-<h1>{{name()}}</h1>
-<h2>{{name2}}</h2>
-<button class="bg-slate-500 p-4 rounded" (click)="clickButton()">Hola</button>
+<section>
+    <div class="mx-auto max-w-screen-xl sm:px-6 sm:py-12 lg:px-8">
+        <ul class="products__grid">
+            @for (product of products(); track $index) {
+                <app-product-card [item]="product"></app-product-card>
+            }
+        </ul>
+    </div>
+</section>

@@ -1,0 +1,10 @@
+@mixin header__cta($backgroundColor, $isCircle: false) {
+    @apply px-5 py-2.5 text-sm font-medium text-teal-600;
+    background-color: $backgroundColor;
+
+    @if $isCircle {
+        @apply rounded-full;
+    } @else {
+        @apply rounded;
+    }
+}

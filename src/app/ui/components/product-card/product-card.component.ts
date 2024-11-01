@@ -1,5 +1,6 @@
+import { ProductsResponse } from '@/core/models/products.interface';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
@@ -11,4 +12,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './product-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductCardComponent { }
+export class ProductCardComponent { 
+  @Input() item!: ProductsResponse;
+}

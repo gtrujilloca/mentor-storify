@@ -1,10 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+@use './app/ui/styles/colors' as *;
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    @apply bg-slate-100 text-slate-700;
+}
 
 .main__layout {
     display: grid;
     grid-template-rows: 64px 1fr 96px;
     height: 100dvh;
+}
+
+.products__grid {
+    @apply mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.custom_dark_theme {
+    @apply bg-slate-700 text-slate-100;
+}
+
+.main__cta {
+    @apply rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-gray-100;
+}
+
+.secondary__cta {
+    @apply rounded-md bg-gray-200 px-5 py-2.5 text-sm font-medium text-teal-600;
 }
