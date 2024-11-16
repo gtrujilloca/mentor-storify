@@ -1,8 +1,6 @@
-import { AuthGateway } from '@/domain/gateways/auth-gateway';
 import { AuthUsecase } from '@/domain/usecases/auth-usecase';
-import { AuthService } from '@/infrastructure/driven-adapters/auth.service';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
@@ -19,17 +17,12 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   private _authSrv = inject(AuthUsecase);
-
-  ngOnInit(): void {
-    
-  }
+  constructor() { }
 
   signin(data: NgForm) {
     const { username, password } = data.value;
-
-    this._authSrv.signin('mor_2314', '83r5^_')
-    // this._authSrv.signin(username, password);
+    this._authSrv.signin(username, password)
   }
 }

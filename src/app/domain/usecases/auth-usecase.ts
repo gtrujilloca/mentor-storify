@@ -22,4 +22,8 @@ export class AuthUsecase {
     isLogged(): boolean {
         return this._authGateway.isLogged();
     }
+
+    getUserId(): number | null {
+        return this._authGateway.getUserId();
+    }
 }

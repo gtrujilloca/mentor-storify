@@ -19,3 +19,7 @@ export interface Rating {
     rate: number;
     count: number;
 }
+
+export interface ProductDto extends Omit<ProductsResponse, 'title' | 'rating'> {
+    name: string;
+}

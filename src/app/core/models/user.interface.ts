@@ -23,3 +23,9 @@ export interface SigninData {
     username: string;
     password: string;
 }
+
+export interface TokenPayload {
+  sub: number;
+  user: string;
+  iat: number;
+}

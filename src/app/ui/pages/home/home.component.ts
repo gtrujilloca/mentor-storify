@@ -1,9 +1,10 @@
-import { ProductsResponse } from '@/core/models/products.interface';
+import { ProductDto } from '@/core/models/products.interface';
 import { ProductsGateway } from '@/domain/gateways/products-gateway';
 import { ProductsUsecase } from '@/domain/usecases/products-usecase';
 import { ProductsService } from '@/infrastructure/driven-adapters/products.service';
+import { AlertComponent } from '@/ui/components/alert/alert.component';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { ProductCardComponent } from "../../components/product-card/product-card.component";
 
 @Component({
@@ -11,7 +12,8 @@ import { ProductCardComponent } from "../../components/product-card/product-card
   standalone: true,
   imports: [
     CommonModule,
-    ProductCardComponent
+    ProductCardComponent,
+    AlertComponent
 ],
   providers: [
     ProductsUsecase,
@@ -27,7 +29,7 @@ import { ProductCardComponent } from "../../components/product-card/product-card
 export class HomeComponent implements OnInit {
   private _productsSrv = inject(ProductsUsecase);
 
-  public products = signal<ProductsResponse[]>([]); 
+  public products = signal<ProductDto[]>([]); 
 
   ngOnInit(): void {
     this._productsSrv.getProducts().subscribe((products) => {      

@@ -1,3 +1,13 @@
 :host {
   display: block;
 }
+
+.product__card:hover .button__cart {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.button__cart {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}

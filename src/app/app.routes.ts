@@ -26,7 +26,7 @@ export const routes: Routes = [
         children: authRoutes
     },
     {
-        path: 'product/:name',
+        path: 'product/:name/:id',
         loadComponent: () => import('@/ui/pages/product-detail/product-detail.component')
     },
     {

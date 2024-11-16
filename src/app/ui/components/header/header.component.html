@@ -18,28 +18,50 @@
                 <div class="flex items-center gap-4">
                     <div class="sm:flex sm:gap-4">
                         <div class="hidden sm:flex">
-                            <a class="header__action"
-                            routerLink="/dashboard">
+                            <a class="header__action" routerLink="/dashboard">
                                 Dashboard
                             </a>
                         </div>
 
                         <div class="hidden sm:flex">
-                            <a class="header__action"
-                            routerLink="/auth/signup">
+                            <a class="header__action" routerLink="/auth/signup">
                                 Register
                             </a>
                         </div>
 
                         <a class="header__action--rounded bg-teal-600" routerLink="/auth/signin">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24" fill="#fff">
-                                <path d="M16 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zM27 32a1 1 0 0 1-1-1v-6.115a6.95 6.95 0 0 0-6.942-6.943h-6.116A6.95 6.95 0 0 0 6 24.885V31a1 1 0 1 1-2 0v-6.115c0-4.93 4.012-8.943 8.942-8.943h6.116c4.93 0 8.942 4.012 8.942 8.943V31a1 1 0 0 1-1 1z"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24"
+                                fill="#fff">
+                                <path
+                                    d="M16 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zM27 32a1 1 0 0 1-1-1v-6.115a6.95 6.95 0 0 0-6.942-6.943h-6.116A6.95 6.95 0 0 0 6 24.885V31a1 1 0 1 1-2 0v-6.115c0-4.93 4.012-8.943 8.942-8.943h6.116c4.93 0 8.942 4.012 8.942 8.943V31a1 1 0 0 1-1 1z" />
                             </svg>
                         </a>
 
-                        <button class="header__action--rounded bg-teal-600" (click)="changeTheme()">
+                        <a class="header__action--rounded bg-teal-600 relative" routerLink="/checkout">
+                            @if (cartItems() > 0) {
+                                <div class="absolute left-10 bottom-6">
+                                    <p class="flex h-1 w-1 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{{cartItems()}}</p>
+                                </div>
+                            }
+                            <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19.5 22C20.3284 22 21 21.3284 21 20.5C21 19.6716 20.3284 19 19.5 19C18.6716 19 18 19.6716 18 20.5C18 21.3284 18.6716 22 19.5 22Z"
+                                    fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M9.5 22C10.3284 22 11 21.3284 11 20.5C11 19.6716 10.3284 19 9.5 19C8.67157 19 8 19.6716 8 20.5C8 21.3284 8.67157 22 9.5 22Z"
+                                    fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M5 4H22L20 15H7L5 4ZM5 4C4.83333 3.33333 4 2 2 2" stroke="white"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20 15H7H5.23077C3.44646 15 2.5 15.7812 2.5 17C2.5 18.2188 3.44646 19 5.23077 19H19.5"
+                                    stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+
+                        <!-- <button class="header__action--rounded bg-teal-600" (click)="changeTheme()">
                             Theme
-                        </button>
+                        </button> -->
                     </div>
 
                     <div class="block md:hidden">

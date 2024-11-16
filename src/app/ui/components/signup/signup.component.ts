@@ -1,10 +1,7 @@
 import { WithoutSaving } from '@/core/guards/leave-form.guard';
-import { User } from '@/core/models/user.interface';
-import { AuthGateway } from '@/domain/gateways/auth-gateway';
 import { AuthUsecase } from '@/domain/usecases/auth-usecase';
-import { AuthService } from '@/infrastructure/driven-adapters/auth.service';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({

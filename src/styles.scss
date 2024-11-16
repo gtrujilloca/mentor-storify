@@ -18,9 +18,9 @@ body {
     @apply mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4;
 }
 
-.custom_dark_theme {
-    @apply bg-slate-700 text-slate-100;
-}
+// .custom_dark_theme {
+//     @apply bg-slate-700 text-slate-100;
+// }
 
 .main__cta {
     @apply rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-gray-100;

@@ -1,6 +1,7 @@
-import { ProductsResponse } from "@/core/models/products.interface";
+import { ProductDto } from "@/core/models/products.interface";
 import { Observable } from "rxjs";
 
 export abstract class ProductsGateway {
-    abstract getProducts(): Observable<ProductsResponse[]>;
+    abstract getProducts(): Observable<ProductDto[]>;
+    abstract getProductById(id: number): Observable<ProductDto>;
 }

@@ -6,4 +6,5 @@ export abstract class AuthGateway {
     abstract signin(username: string, password: string): void;
     abstract refreshToken(id: string, refreshToken: string): Observable<any>;
     abstract isLogged(): boolean;
+    abstract getUserId(): number | null;
 }
