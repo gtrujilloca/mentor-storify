@@ -11,8 +11,8 @@ export class AuthUsecase {
         return this._authGateway.registerUser(user);
     }
 
-    signin(username: string, password: string): void {
-        this._authGateway.signin(username, password);
+    signin(username: string, password: string): Observable<{ token: string }> {
+        return this._authGateway.signin(username, password);
     }
 
     refreshToken(id: string, refreshToken: string): Observable<any> {

@@ -2,7 +2,7 @@
     <app-alert></app-alert>
     <div class="mx-auto max-w-screen-xl sm:px-6 sm:py-12 lg:px-8">
         <ul class="products__grid">
-            @for (product of products(); track $index) {
+            @for (product of products$ | async; track $index) {
                 <app-product-card [item]="product"></app-product-card>
             }
         </ul>

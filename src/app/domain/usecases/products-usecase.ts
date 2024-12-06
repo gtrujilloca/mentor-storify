@@ -3,7 +3,9 @@ import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ProductsGateway } from "../gateways/products-gateway";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ProductsUsecase {
     private _productsGateway = inject(ProductsGateway);
 

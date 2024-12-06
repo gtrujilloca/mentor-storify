@@ -9,6 +9,7 @@ import { AuthService } from '@/infrastructure/driven-adapters/auth.service';
 import { CartService } from '@/infrastructure/driven-adapters/cart.service';
 import { AlertComponent } from '@/ui/components/alert/alert.component';
 import { CartComponent } from '@/ui/components/cart/cart.component';
+import { StateFaccade } from '@/ui/state/services/state-faccade.service';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { catchError, Subject, tap } from 'rxjs';
@@ -37,21 +38,22 @@ import { takeUntil } from 'rxjs/internal/operators/takeUntil';
   styleUrl: './checkout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class CheckoutComponent implements OnInit {
-  cartList = signal<Cart[]>([]);
+export default class CheckoutComponent {
+  // cartList = signal<Cart[]>([]);
   cartService = inject(CartUsecase);
   alertService = inject(AlertService);
   private messages = OderAlertsMessages;
   private _authSrv = inject(AuthUsecase);
-  // setCartList$ = this.cartService.currentCart.pipe(
-  //   tap(products => this.cartList.set(products)),
-  // )
+  private readonly _stateSrv = inject(StateFaccade);
 
-  ngOnInit(): void {
-    this.cartService.currentCart.subscribe(products =>
-      this.cartList.set(products)
-    )
-  }
+  cartList$ = this._stateSrv.productsInCartData$;
+  total$ = this._stateSrv.totalCartAmount$;
+
+  // ngOnInit(): void {
+  //   this.cartService.currentCart.subscribe(products =>
+  //     this.cartList.set(products)
+  //   )
+  // }
 
   checkout(): void {
     const date = new Date().toISOString().split('T')[0];
@@ -67,26 +69,25 @@ export default class CheckoutComponent implements OnInit {
       products: this.productsAndQuantity
     };
 
-    this.cartService.sendOrder(order).pipe(
-      catchError(err => {
-        this.alertService.showAlert(this.messages.ORDER_ERROR);
-        throw err;
-      })
-    ).subscribe(_ => {
-      this.alertService.showAlert(this.messages.ORDER_PLACED);
-    });
+    this._stateSrv.sendOrder(order);
   }
 
   get productsAndQuantity() {
-    return this.cartList().map(item => {
-      return {
+    let products: { productId: number, quantity: number }[] = [];
+    this.cartList$.subscribe(cartList => {
+      products = cartList.map(item => ({
         productId: item.id,
         quantity: item.quantity
-      }
+      }));
     });
+    return products;
   }
 
   get total() {
-    return this.cartList().reduce((acc, item) => acc + item.subtotal, 0).toFixed(2);
+    let total = 0;
+    this.cartList$.subscribe(cartList => {
+      total = cartList.reduce((acc, item) => acc + item.subtotal, 0);
+    });
+    return total.toFixed(2);
   }
 }

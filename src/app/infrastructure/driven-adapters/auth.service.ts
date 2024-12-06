@@ -19,15 +19,13 @@ export class AuthService extends AuthGateway {
     return this.httpClient.post<User>(`${environment.serviceUrl}/users`, user)
   }
 
-  signin(username: string, password: string): void {
-    this.httpClient.post<{ token: string }>(`${environment.serviceUrl}/auth/login`, { username, password }).pipe(
+  signin(username: string, password: string): Observable<{ token: string }> {
+    return this.httpClient.post<{ token: string }>(`${environment.serviceUrl}/auth/login`, { username, password }).pipe(
       tap(res => {
-        sessionStorage.setItem('token', res.token)
-        this.router.navigateByUrl('/')
-      }), catchError(error => {
-        return of(new Error(error))
-      }))
-      .subscribe()
+        sessionStorage.setItem('token', res.token);
+        this.router.navigate(['/']);
+      })
+    );
   }
 
   refreshToken(id: string, refreshToken: string): Observable<any> {

@@ -13,11 +13,11 @@ import { ActivatedRoute } from '@angular/router';
     CommonModule,
   ],
   providers: [
-    ProductsUsecase,
-    {
-      provide: ProductsGateway,
-      useClass: ProductsService
-    }
+    // ProductsUsecase,
+    // {
+    //   provide: ProductsGateway,
+    //   useClass: ProductsService
+    // }
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',

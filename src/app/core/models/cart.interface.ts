@@ -23,11 +23,3 @@ export interface UserCarts {
     products: ProductsInCart[];
 }
 
-type ColorKey = 'primary' | 'secondary' | 'tertiary';
-
-const color: Record<ColorKey, string> = {
-    primary: '#FF0000',
-    secondary: '#00FF00',
-    tertiary: '#0000FF'
-}
-

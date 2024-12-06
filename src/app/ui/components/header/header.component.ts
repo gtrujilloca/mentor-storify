@@ -1,6 +1,7 @@
 import { CartGateway } from '@/domain/gateways/cart-gateway';
 import { CartUsecase } from '@/domain/usecases/cart-usecase';
 import { CartService } from '@/infrastructure/driven-adapters/cart.service';
+import { StateFaccade } from '@/ui/state/services/state-faccade.service';
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -26,13 +27,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   lightClasses = 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-100'
   darkClasses = 'bg-slate-700 text-slate-100 dark:bg-slate-100 dark:text-slate-700'
 
-  cartItems = signal<number>(0);
+  // cartItems = signal<number>(0);
   private _cartSrv = inject(CartUsecase);
+  private readonly _stateSrv = inject(StateFaccade);
+
+  cartItems$ = this._stateSrv.productsInCartData$;
 
   ngOnInit(): void {
-    this._cartSrv.currentCart.subscribe(items =>
-      this.cartItems.set(items.length)
-    );
+    // this._cartSrv.currentCart.subscribe(items =>
+    //   this.cartItems.set(items.length)
+    // );
+
   }
 
   ngAfterViewInit() {

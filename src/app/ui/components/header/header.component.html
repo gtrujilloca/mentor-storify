@@ -38,10 +38,12 @@
                         </a>
 
                         <a class="header__action--rounded bg-teal-600 relative" routerLink="/checkout">
-                            @if (cartItems() > 0) {
-                                <div class="absolute left-10 bottom-6">
-                                    <p class="flex h-1 w-1 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{{cartItems()}}</p>
-                                </div>
+                            @if (cartItems$ | async; as cartItems) {
+                                @if (cartItems.length > 0) {
+                                    <div class="absolute left-10 bottom-6">
+                                        <p class="flex h-1 w-1 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{{cartItems.length}}</p>
+                                    </div>
+                                }
                             }
                             <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">

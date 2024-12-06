@@ -36,13 +36,8 @@ export class CartService {
     this._currentCart.next(this._cart);
   }
   
-  sendOrder(body: OrderDto): Observable<any> {
-    return this.http.post(`${environment.serviceUrl}/carts`, body).pipe(
-      tap(_ => {
-        this._cart = [];
-        this._currentCart.next(this._cart);
-      })
-    )
+  sendOrder(orderBody: OrderDto): Observable<UserCarts> {
+    return this.http.post<UserCarts>(`${environment.serviceUrl}/carts`, orderBody);
   }
 
   getUserCarts(userId: number): Observable<UserCarts[]> {

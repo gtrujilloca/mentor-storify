@@ -2,6 +2,7 @@ import { Cart } from '@/core/models/cart.interface';
 import { CartGateway } from '@/domain/gateways/cart-gateway';
 import { CartUsecase } from '@/domain/usecases/cart-usecase';
 import { CartService } from '@/infrastructure/driven-adapters/cart.service';
+import { StateFaccade } from '@/ui/state/services/state-faccade.service';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 
@@ -24,9 +25,9 @@ import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core
 export class CartComponent { 
   @Input() cartItem!: Cart;
 
-  private _cartSrv = inject(CartUsecase);
+  private readonly _stateSrv = inject(StateFaccade);
 
   removeItem(id: number) {
-    this._cartSrv.removeFromCart(id);
+    this._stateSrv.removeFromCart(id);
   }
 }
