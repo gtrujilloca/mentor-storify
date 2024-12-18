@@ -28,9 +28,12 @@ const config: Config = {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "\\\\node_modules\\\\"
-  // ],
+  coveragePathIgnorePatterns: [
+    ".module.ts",
+    ".config.ts",
+    ".constants.ts",
+    "/node_modules/",
+  ],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
@@ -53,9 +56,9 @@ const config: Config = {
   // errorOnDeprecated: false,
 
   // The default configuration for fake timers
-  fakeTimers: {
-    "enableGlobally": true
-  },
+  // fakeTimers: {
+  //   "enableGlobally": true
+  // },
 
   // Force coverage collection from ignored files using an array of glob patterns
   // forceCoverageMatch: [],
@@ -92,7 +95,8 @@ const config: Config = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    "@/(.*)$" : "<rootDir>/src/app/$1"
+    "@/(.*)$" : "<rootDir>/src/app/$1",
+    "@environment/(.*)$" : "<rootDir>/src/environments/$1"
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -164,9 +168,11 @@ const config: Config = {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: [
-  //   "\\\\node_modules\\\\"
-  // ],
+  testPathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/dist/",
+    
+  ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],

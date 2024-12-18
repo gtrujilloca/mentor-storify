@@ -3,9 +3,9 @@ import { AuthGateway } from '@/domain/gateways/auth-gateway';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map, Observable, of, tap, timer } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { jwtDecode } from 'jwt-decode';
+import { map, Observable, tap, timer } from 'rxjs';
+import { environment } from '@environment/environment';
 
 @Injectable()
 export class AuthService extends AuthGateway {

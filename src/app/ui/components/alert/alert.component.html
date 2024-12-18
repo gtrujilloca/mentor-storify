@@ -12,10 +12,10 @@
                     </span>
             
                     <div class="flex-1">
-                        <strong class="block font-medium text-gray-900"> {{alertData.message}} </strong>
+                        <strong class="block font-medium text-gray-900" data-test-id="alert-message"> {{alertData.message}} </strong>
                     </div>
             
-                    <button class="text-gray-500 transition hover:text-gray-600" (click)="hideAlert()">
+                    <button class="text-gray-500 transition hover:text-gray-600" data-test-id="alert-dismiss-btn" (click)="hideAlert()">
                         <span class="sr-only">Dismiss popup</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">

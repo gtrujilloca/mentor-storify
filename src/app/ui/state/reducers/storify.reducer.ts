@@ -31,16 +31,13 @@ export const storifyReducer = createReducer(
     initialState,
     on(StorifyLocalActions.addToCart, 
         (state, {product}): StorifyState => {
-            const isProductInCart = state.productsInCart.find(element => element.id === product.id);
-            let productsAdded = state.productsInCart.map(element => ({ ...element }));
-            if (isProductInCart) {
-                productsAdded = productsAdded.map(element => {
-                    if (element.id === product.id) {
-                        element.quantity += 1;
-                        element.subtotal = element.price * element.quantity;
-                    }
-                    return element;
-                });
+            let productsAdded = state.productsInCart.slice();
+            const productIndex = productsAdded.findIndex(element => element.id === product.id);
+            if (productIndex !== -1) {
+                let {quantity, price} = productsAdded[productIndex];
+                quantity++
+                const product = {...productsAdded[productIndex], quantity, subtotal: price * quantity}
+                productsAdded[productIndex] = product;
             } else {
                 productsAdded = [...productsAdded, { ...product, quantity: 1, subtotal: product.price }];
             }

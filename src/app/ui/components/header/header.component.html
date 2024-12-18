@@ -41,7 +41,7 @@
                             @if (cartItems$ | async; as cartItems) {
                                 @if (cartItems.length > 0) {
                                     <div class="absolute left-10 bottom-6">
-                                        <p class="flex h-1 w-1 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{{cartItems.length}}</p>
+                                        <p class="flex h-1 w-1 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white" data-test-id="cart-items">{{cartItems.length}}</p>
                                     </div>
                                 }
                             }

@@ -3,7 +3,7 @@ import { ProductsGateway } from '@/domain/gateways/products-gateway';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '@environment/environment';
 import { productsMapper, singleProductMapper } from '../mappers/products.mapper';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class ProductsService extends ProductsGateway {
     );
   }
 
-  override getProductById(id: number): Observable<ProductDto> {
+  getProductById(id: number): Observable<ProductDto> {
     return this.httpClient.get<ProductsResponse>(`${environment.serviceUrl}/products/${id}`).pipe(
       map(product => singleProductMapper(product))
     )

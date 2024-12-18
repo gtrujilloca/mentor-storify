@@ -19,9 +19,8 @@ export class StorifyEffects {
         return this._actions$.pipe(
             ofType(StorifyLocalActions.getProducts),
             switchMap(() => this._productsSrv.getProducts().pipe(
-                map(products => StorifyApiActions.getProductsSuccessfully({ products }),
-                    catchError(() => of(StorifyApiActions.getProductsFailure()))
-                )
+                map(products => StorifyApiActions.getProductsSuccessfully({ products })),
+                catchError(() => of(StorifyApiActions.getProductsFailure()))
             ))
         )
     });

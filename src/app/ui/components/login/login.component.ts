@@ -25,7 +25,6 @@ export class LoginComponent {
 
   signin(data: NgForm) {
     const { username, password } = data.value;
-    // this._authSrv.signin(username, password)
     this._stateSrv.signin(username, password);
   }
 }
